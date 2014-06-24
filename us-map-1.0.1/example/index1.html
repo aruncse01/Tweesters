@@ -1,0 +1,29 @@
+<html>
+<head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.js"></script>
+<script>
+
+$(document).ready(function() {
+
+var fh = fopen('D:\checkmap\us-map-1.0.1\example\tweet_states.txt', 0); // Open the file for reading.
+if(fh!=-1) // Check if the file has been successfully opened.
+{
+   var length = flength(fh); // Get the length of the file.
+    var str = fread(fh, length); // Read in the entire file.
+    fclose(fh); // Close the file.
+
+    // Display the contents of the file.
+    write(str);
+}
+});
+
+
+
+
+//
+</script>
+</head>
+<body>
+
+</body>
+</html>

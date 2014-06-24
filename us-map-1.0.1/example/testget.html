@@ -1,0 +1,57 @@
+<html>
+<head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.js"></script>
+<script>
+function ReadFile()
+{
+alert("Hi");
+var mystatename=new Array();  
+var mystateval=new Array();
+var txtFile = new XMLHttpRequest();
+alert("H111111111111111i");
+txtFile.open("GET", "http://twitterlog-uri.s3.amazonaws.com/tweetj_sentiment_state/tweet_states.txt", true);
+alert("22222222222222222222222i");
+txtFile.onreadystatechange = function()
+{
+  if (txtFile.readyState === 4) {  // document is ready to parse.
+    if (txtFile.status === 200) {  // file is found
+ alert("333333333333333333333333333333i");
+      allText = txtFile.responseText; 
+   alert("444444444444444444444444444444i");
+    var  lines = txtFile.responseText.split("\n");
+   alert("lines - "+lines);
+  alert(lines.length);
+  alert(lines[0]);
+  for(i=0;i<lines.length-1;i++)
+  {
+  var r=lines[i].split("	");
+  mystatename.push(r[0]);
+  mystateval.push(r[1]);
+ //document.write(r[1]+"<br>");
+  }
+  for(m=0;m<mystateval.length;m++)
+  {
+  document.write(mystateval[m]+"<br>");
+  }
+   alert("1111111111111111111111");
+   
+   
+    }
+  }
+}
+txtFile.send(null);
+
+}
+ </script>
+<script>
+$(document).ready(function() {
+ReadFile1();
+});
+
+</script>
+
+</head>
+ <body onload="ReadFile()">
+ alert("BOOOODY");
+ </body>
+ </html>

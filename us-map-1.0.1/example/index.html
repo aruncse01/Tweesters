@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>US Map Demo</title>
+	
+	<style>
+	  #alert {
+	    font-family: Arial, Helvetica, sans-serif;
+	    font-size: 16px;
+	    background-color: #ddd;
+	    color: #333;
+	    padding: 5px;
+	    font-weight: bold;
+	  }
+	</style>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.js"></script>
+	<script src="raphael.js"></script>
+	<!-- <script src="scale.raphael.js"></script> -->
+	
+	<script src="color.jquery.js"></script>
+	<script src="jquery.usmap.js"></script>
+	<script>
+	var mystateval=new Array();
+function ReadFile()
+{
+//alert("Hi");
+var mystatename=new Array();  
+
+var txtFile = new XMLHttpRequest();
+//alert("H111111111111111i");
+txtFile.open("GET", "http://twitterlog-uri.s3.amazonaws.com/tweetj_sentiment_state/tweet_states.txt", true);
+//alert("22222222222222222222222i");
+txtFile.onreadystatechange = function()
+{
+  if (txtFile.readyState === 4) {  // document is ready to parse.
+    if (txtFile.status === 200) {  // file is found
+ //alert("333333333333333333333333333333i");
+      allText = txtFile.responseText; 
+   //alert("444444444444444444444444444444i");
+    var  lines = txtFile.responseText.split("\n");
+   //alert("lines - "+lines);
+  //alert(lines.length);
+  //alert(lines[0]);
+  for(i=0;i<lines.length-1;i++)
+  {
+  var r=lines[i].split("	");
+  mystatename.push(r[0]);
+  mystateval.push(r[1]);
+ //document.write(r[1]+"<br>");
+  }
+  //for(m=0;m<mystateval.length;m++)
+  //{
+ // document.write(mystateval[m]+"<br>");
+ // }
+  
+   
+   
+    }
+  }
+}
+txtFile.send(null);
+
+}
+function getColorCode(val)
+	{
+			if(val<=750)
+			{
+				return '#CCFB5D';
+			}
+			else if(val>750 && val <=1500)
+			{
+				return '#BCE954';
+			}
+			else if(val>1500 && val <=2250)
+			{
+				return '#B1FB17';
+			}
+			else if(val>2250 && val <=3000)
+			{
+				return '#8AFB17';
+			}
+			else if(val>3000 && val <=3750)
+			{
+				return '#7FE817';
+			}
+			else if(val>3750 && val <=4500)
+			{
+				return '#59E817';
+			}else if(val>4500 && val <=5250)
+			{
+				return '#5FFB17';
+			}else if(val>5250 && val <=6000)
+			{
+				return '#87F717';
+			}else if(val>6000 && val <=6750)
+			{
+				return '#00FF00';
+			}else if(val>6750 && val <=7500)
+			{
+				return '#C3FDB8';
+			}
+			else if(val>7500 && val <=8250)
+			{
+				return '#B5EAAA';
+			}else if(val>8250 && val <=9000)
+			{
+				return '#6AFB92';
+			}else if(val>9000 && val <=9750)
+			{
+				return '#64E986';
+			}else if(val>9750 && val <=10500)
+			{
+				return '#348017';
+			}else if(val>10500 && val <=11250)
+			{
+				return '#667C26';
+			}else if(val>11250 && val <=12000)
+			{
+				return '#347C2C';
+			}
+			else if(val>12000 && val <=12750)
+			{
+				return '#347235';
+			}
+			else if(val>12750 && val <=13500)
+			{
+				return '#4E9258';
+			}else if(val>13500 && val <=14250)
+			{
+				return '#387C44';
+			}else if(val>14250 && val <=15000)
+			{
+				return '#254117';
+			}else if(val>15000 && val <=15750)
+			{
+				return '#4E8975';
+			}else if(val>15750 && val <=16500)
+			{
+				return '#306754';
+			}else if(val>16500 && val <=17250)
+			{
+				return '#348781';
+			}
+			else
+			{
+				return '#617C58';
+			}
+			
+	
+	}
+ </script>
+ 
+	<script>
+	
+	
+	$(document).ready(function() {
+	ReadFile();
+	alert("Loading");
+	var locat='TX';
+	var colorcode=[];
+	var colo='#C3FDB8';
+	var loc=['AK','TX','NY'];
+		var map={'AK':1234,'NY':100,'TX':2000};
+		function get(k){
+			return map[k];
+			}
+			for ( var i = 0; i < loc.length; i++ ) {
+
+			var val=get(loc[i]);
+			var loca=loc[i];
+			
+			}
+	  $('#map').usmap({
+		//alert("Hi22222222222222222222222222222222222222222");
+	    'stateSpecificStyles': {
+		//	alert("Hi3333333333333333333333333333333333333");
+	      
+		  'AL':{fill: getColorCode(mystateval[0])},
+		  'AK':{fill: getColorCode(mystateval[1])},
+		  'AZ':{fill: getColorCode(mystateval[2])},
+		  'AR':{fill: getColorCode(mystateval[3])},
+		  'CA':{fill: getColorCode(mystateval[4])},
+		 'CO':{fill: getColorCode(mystateval[5])},
+		 'CT':{fill: getColorCode(mystateval[6])},
+		 'DE':{fill: getColorCode(mystateval[7])},
+		 'DC':{fill: getColorCode(mystateval[8])},
+		 'FL':{fill: getColorCode(mystateval[9])},
+		 'GA':{fill: getColorCode(mystateval[10])},
+		 'HI':{fill: getColorCode(mystateval[11])},
+		 'ID':{fill: getColorCode(mystateval[12])},
+		 'IL':{fill: getColorCode(mystateval[13])},
+		 'IN':{fill: getColorCode(mystateval[14])},
+		 'IA':{fill: getColorCode(mystateval[15])},
+		 'KS':{fill: getColorCode(mystateval[16])},
+		 'KY':{fill: getColorCode(mystateval[17])},
+		 'LA':{fill: getColorCode(mystateval[18])},
+		 'ME':{fill: getColorCode(mystateval[19])},
+		 'MD':{fill: getColorCode(mystateval[20])},
+		 'MA':{fill: getColorCode(mystateval[21])},
+		 'MI':{fill: getColorCode(mystateval[22])},
+		  'MN':{fill: getColorCode(mystateval[23])},
+		  'MS':{fill: getColorCode(mystateval[24])},
+		  'MO':{fill: getColorCode(mystateval[25])},
+		  'MT':{fill: getColorCode(mystateval[26])},
+		 'NE':{fill: getColorCode(mystateval[27])},
+		 'NV':{fill: getColorCode(mystateval[28])},
+		 'NH':{fill: getColorCode(mystateval[29])},
+		 'NJ':{fill: getColorCode(mystateval[30])},
+		 'NM':{fill: getColorCode(mystateval[31])},
+		 'NY':{fill: getColorCode(mystateval[32])},
+		 'NC':{fill: getColorCode(mystateval[33])},
+		 'ND':{fill: getColorCode(mystateval[34])},
+		 'OH':{fill: getColorCode(mystateval[35])},
+		 'OK':{fill: getColorCode(mystateval[36])},
+		 'OR':{fill: getColorCode(mystateval[37])},
+		 'PA':{fill: getColorCode(mystateval[38])},
+		 'RI':{fill: getColorCode(mystateval[39])},
+		 'SC':{fill: getColorCode(mystateval[40])},
+		 'SD':{fill: getColorCode(mystateval[41])},
+		 'TN':{fill: getColorCode(mystateval[42])},
+		 'TX':{fill: getColorCode(mystateval[43])},
+		 'UT':{fill: getColorCode(mystateval[44])},
+		 'VT':{fill: getColorCode(mystateval[45])},
+		 'VA':{fill: getColorCode(mystateval[46])},
+		 'WA':{fill: getColorCode(mystateval[47])},
+		 'WV':{fill: getColorCode(mystateval[48])},
+		 'WI':{fill: getColorCode(mystateval[49])},
+		 'WY':{fill: getColorCode(mystateval[50])},
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 // alert("Hi44444444444444444444444444444444444444444");
+		  }
+		  ,
+	    'stateSpecificHoverStyles': {
+	      'HI' : {fill: '#ff0'}
+	    },
+	    
+	    'mouseoverState': {
+	      'HI' : function(event, data) {
+	        //return false;
+	      }
+	    },
+	    
+	    
+	    'click' : function(event, data) {
+	      $('#alert')
+	        .text('Click '+data.name+' on map 1')
+	        .stop()
+	        .css('backgroundColor', '#ff0')
+	        .animate({backgroundColor: '#ddd'}, 1000);
+	    }
+	  }
+	  // AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA  
+	  );
+	  
+	  
+	  
+	  $('#over-md').click(function(event){
+	    $('#map').usmap('trigger', 'MD', 'mouseover', event);
+	  });
+	  
+	  $('#out-md').click(function(event){
+	    $('#map').usmap('trigger', 'MD', 'mouseout', event);
+	  });
+	});
+	</script>
+</head>
+<body >
+  <div id="alert">Click alerts</div>
+  
+  <div id="map" style="width: 930px; height: 630px; "></div>
+  
+  <button id="over-md">mouseover MD</button> <button id="out-md">mouseout MD</button>
+  <div id="map2" style="width: 300px; height: 300px;"></div>
+</body>
+</html>

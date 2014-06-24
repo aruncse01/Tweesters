@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>US Map Demo</title>
+	
+	<style>
+	  #alert {
+	    font-family: Arial, Helvetica, sans-serif;
+	    font-size: 16px;
+	    background-color: #ddd;
+	    color: #333;
+	    padding: 5px;
+	    font-weight: bold;
+	  }
+	</style>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.js"></script>
+	<script src="raphael.js"></script>
+	<!-- <script src="scale.raphael.js"></script> -->
+	
+	<script src="color.jquery.js"></script>
+	<script src="jquery.usmap.js"></script>
+	
+	<script>
+	$(document).ready(function() {
+	var loc=['AK','TX','NY'];
+		var map={'AK':1234,'NY':100,'TX':200};
+		function get(k){
+			return map[k];
+			}
+			for ( var i = 0; i < loc.length; i++ ) {
+
+			var val=get(loc[i]);
+			var loca=loc[i];
+			document.write(loca);
+			}
+	  $('#map').usmap({
+	 
+		var loc=['AK','TX','NY'];
+		var map={'AK':1234,'NY':100,'TX':200};
+		function get(k){
+			return map[k];
+			}
+			for ( var i = 0; i < loc.length; i++ ) {
+
+			var val=get(loc[i]);
+			var loca=loc[i];
+			document.write(loca);
+	    'stateSpecificStyles': {
+			if(val<=100)
+			{
+	      '+loca+' : {fill: '#C3FDB8'}
+		  }
+		  else if(val>100 && val<=200)
+		  {
+		  '+loc[i]+' : {fill: '#B5EAAA'}
+		  }
+		  else if (val >1000)
+		  {
+		  'loca' : {fill: '#254117'}
+		  }
+	    }}
+	    
+	    
+	    
+	  });
+	  
+	  $('#map2').usmap({
+	    'stateStyles': {
+	      fill: '#025', 
+	      "stroke-width": 1,
+	      'stroke' : '#036'
+	    },
+	    'stateHoverStyles': {
+	      fill: 'teal'
+	    },
+	    
+	    'click' : function(event, data) {
+	      $('#alert')
+	        .text('Click '+data.name+' on map 2')
+	        .stop()
+	        .css('backgroundColor', '#af0')
+	        .animate({backgroundColor: '#ddd'}, 1000);
+	    }
+	  });
+	  
+	  $('#over-md').click(function(event){
+	    $('#map').usmap('trigger', 'MD', 'mouseover', event);
+	  });
+	  
+	  $('#out-md').click(function(event){
+	    $('#map').usmap('trigger', 'MD', 'mouseout', event);
+	  });
+	});
+	</script>
+</head>
+<body>
+  <div id="alert">Click alerts</div>
+  
+  <div id="map" style="width: 930px; height: 630px; "></div>
+  
+  <button id="over-md">mouseover MD</button> <button id="out-md">mouseout MD</button>
+  <div id="map2" style="width: 300px; height: 300px;"></div>
+</body>
+</html>

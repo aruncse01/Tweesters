@@ -1,0 +1,50 @@
+Alabama	12488
+Alaska	76
+Arizona	12520
+Arkansas	11939
+California	10734
+Colorado	14914
+Connecticut	9337
+District of Columbia	10563
+Florida	14252
+Georgia	13444
+Hawaii	8390
+Idaho	3749
+Illinois	12063
+Indiana	14855
+Iowa	9075
+Kansas	13307
+Kentucky	12221
+Louisiana	13669
+Maine	10246
+Maryland	7797
+Massachusetts	13706
+Michigan	11777
+Minnesota	12253
+Mississippi	11453
+Missouri	12856
+Montana	3136
+Nebraska	10203
+Nevada	1540
+New Hampshire	13894
+New Jersey	4882
+New Mexico	9495
+New York	7357
+North Carolina	12295
+North Dakota	6635
+Ohio	11706
+Oklahoma	12538
+Oregon	4867
+Pennsylvania	9855
+Rhode Island	1142
+South Carolina	15242
+South Dakota	490
+Tennessee	13762
+Texas	7051
+Utah	1997
+Vermont	12275
+Virginia	512
+Washington	18703
+West Virginia	12548
+Wisconsin	12958
+Wyoming	1320
